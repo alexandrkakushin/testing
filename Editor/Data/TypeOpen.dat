@@ -1,0 +1,5 @@
+picture|*.jpg; *.bmp; *.jpeg; *.ico; *.emf; *.wmf;
+video|*.avi; *.mp4;
+sound|*.mp3; *.wav;
+browser|*.mhtml; *.doc; *.xls;
+windows|*.mdb; *.*;

@@ -1,0 +1,52 @@
+[SubjectsStudent]
+SELECT S.*
+FROM Subjects as S, Results as R, Topics as T
+WHERE (R.ID_Topics=T.ID) and (T.ID_Subjects=S.ID) and (R.ID_Students=:prmStudent)
+[EndQuery]
+
+[ResultsStudent]
+SELECT TP.Name, R.Ocenka, R.Procent, M.Name, OQ.Name, TE.Name, R.DateTime
+FROM Results as R, Mode as M, OrderQuestions as OQ, Teachers as TE, Topics as TP, Subjects as SU, Students as ST
+WHERE (M.ID=R.ID_Mode) and (OQ.ID=R.ID_OrderQuestions) and
+	  (TE.ID=R.ID_Teachers) and (ST.ID=:prmStudent) and 
+	  (TP.ID=R.ID_Topics) and (SU.ID=TP.ID_Subjects) and
+	  (SU.ID=:prmSubject) and (ST.ID=R.ID_Students)
+[EndQuery]
+
+[TreeTopicsGroups]
+SELECT G.Name, SU.Name, T.Name, R.DateTime
+FROM Groups as G, Subjects as SU, Students as ST, Topics as T, Results as R
+WHERE (G.ID=ST.ID_Groups) and (T.ID_Subjects=SU.ID) and
+ 	  (R.ID_Topics=T.ID) and (R.ID_Students=ST.ID)
+ORDER BY G.Name, SU.Name, T.Name, R.DateTime
+[EndQuery]
+
+[ListGroup]
+SELECT ST.Name
+FROM Groups as G, Students as ST
+WHERE (ST.ID_Groups=G.ID) and (G.Name=:prmGroup)
+ORDER BY ST.Name
+[EndQuery]
+
+[ResultsTopicsGroups]
+SELECT ST.Name, Ocenka, Procent, DateTime, TE.Name
+FROM Students as ST, Results as R,
+	 Subjects as SU, Topics as T, 
+	 Groups as G, Teachers as TE
+WHERE (ST.ID_Groups=G.ID) and (G.Name=:prmGroup) and
+	  (R.ID_Students=ST.ID) and (T.ID_Subjects=SU.ID) and
+	  (R.ID_Topics=T.ID) and (SU.Name=:prmSubject) and
+	  (T.Name=:prmTopic) and (TE.ID=R.ID_Teachers)
+[EndQuery]
+
+[ResultsTopicsGroupsWithDate]
+SELECT ST.Name, Ocenka, Procent, DateTime, TE.Name
+FROM Students as ST, Results as R,
+	 Subjects as SU, Topics as T, 
+	 Groups as G, Teachers as TE
+WHERE (ST.ID_Groups=G.ID) and (G.Name=:prmGroup) and
+	  (R.ID_Students=ST.ID) and (T.ID_Subjects=SU.ID) and
+	  (R.ID_Topics=T.ID) and (SU.Name=:prmSubject) and
+	  (T.Name=:prmTopic) and (R.DateTime=:prmDate) and
+	  (TE.ID=R.ID_Teachers)  
+[EndQuery]

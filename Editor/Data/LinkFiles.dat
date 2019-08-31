@@ -1,0 +1,6 @@
+Графические файлы (*.jpg; *.bmp; *.jpeg; *.ico; *.emf; *.wmf;)|*.jpg; *.bmp; *.jpeg; *.ico; *.emf; *.wmf;|
+Видео-файлы (*.avi; *.mp4)|*.avi; *.mp4;|
+Звуковые файлы (*.mp3; *.wav)|*.mp3; *.wav;|
+Интернет-страницы (*.mhtml)|*.mhtml;|
+Документы MS Office (*.doc; *.xls; *.mdb)|*.doc; *.xls; *.mdb;|
+Другие файлы (*.*)|*.*;|
